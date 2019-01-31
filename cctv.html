@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Kendari Command Center</title>
+
+	<!-- ANIMATE.CSS -->
+	<link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+	<!-- My STYLE -->
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/main.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+	<!-- CHART JS FOR -->
+	<script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.js"></script>
+	<script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+	<!-- FONT AWESOME -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
+
+</head>
+
+<body id="cctvPage">
+	<div id="bg">
+
+	</div>
+	<div class="container-fluid">
+		<div class="row row-full">
+			<div class="col-md-9 col-12 left-side" id="viewitem">
+				<div class="box p-3 bg-white rounded animated zoomIn mt-1" id="cctv">
+					<div id="stuff">
+						<img id="image0" src="http://203.77.210.41:2000/mjpg/video.mjpg" class="detailimage" alt="">
+						<p class="text-center mt-2"><i class="fa fa-circle spinner-grow text-success"></i> <b>Axis Camera
+								Jakarta</b></p>
+					</div>
+				</div>
+				<div class="row d-none d-md-flex bg-white mt-1 " id="listhistory">
+
+				</div>
+			</div>
+			<div class="col-md-3 col-12 right-side">
+				<div class="mt-1 box bg-white rounded animated zoomIn" id="list-cctv">
+					<div class="row banner">
+						<div class="col">
+							<h3>List CCTV</h3>
+						</div>
+					</div>
+
+					<div class="form-row w-100">
+						<div class="col-12 pr-0" id="search">
+							<input type="text" class="form-control-sm w-100" placeholder="Search...">
+						</div>
+					</div>
+					<hr>
+					<div class="row list">
+						<div class="col-4">
+							<img id="image1" src="http://210.23.68.3:88/mjpg/video.mjpg">
+						</div>
+						<div class="col-8 p-0">
+							<h6 id="image1">Jatiluhur CCTV, Jakarta</h6>
+							<p><i class="fa fa-circle fa-xs animated infinite pulse text-success mr-1"></i>Online</p>
+						</div>
+					</div>
+
+					<div class="row list">
+						<div class="col-4">
+							<img id="image2" src="http://115.124.86.172:8000/mjpg/video.mjpg">
+						</div>
+						<div class="col-8 p-0">
+							<h6 id="image2">DCOST Banten, Tanggerang</h6>
+							<p><i class="fa fa-circle fa-xs animated infinite pulse text-success mr-1"></i>Online</p>
+						</div>
+					</div>
+
+					<div class="row list">
+						<div class="col-4">
+							<img id="image3" src="http://119.2.50.116:91/mjpg/video.mjpg">
+						</div>
+						<div class="col-8 p-0">
+							<h6 id="image3">Jawa Tengah, Semarang</h6>
+							<p><i class="fa fa-circle fa-xs animated infinite pulse text-success mr-1"></i>Online</p>
+						</div>
+					</div>
+
+					<div class="row list">
+						<div class="col-4">
+							<img id="image4" src="http://210.23.68.3:81/mjpg/video.mjpg">
+						</div>
+						<div class="col-8 p-0">
+							<h6 id="image4">Brexit, Jakarta</h6>
+							<p><i class="fa fa-circle fa-xs animated infinite pulse text-success mr-1"></i>Online</p>
+						</div>
+					</div>
+
+					<div class="row list">
+						<div class="col-4">
+							<img id="image5" src="http://116.68.252.222:83/mjpg/video.mjpg">
+						</div>
+						<div class="col-8 p-0">
+							<h6 id="image5">Interchange, Surabaya</h6>
+							<p><i class="fa fa-circle fa-xs animated infinite pulse text-success mr-1"></i>Online</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/ipcamera.js"></script>
+	<script src="assets/js/search.js"></script>
+</body>
+
+</html>

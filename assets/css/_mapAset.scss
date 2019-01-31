@@ -1,0 +1,306 @@
+#mapAset {
+  #bg{
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+     background-color: color(primary);
+     width: 100vw;
+     height: 100vh;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: -1;
+  }
+
+  .left-side {
+    @include desktop{
+      height: 100%;
+    }
+    .map{
+      @include desktop{
+        height: 60%;
+      }
+      @include mobile{
+        height: 300px;
+      }
+
+      border: $solid;
+      padding: $padding;
+      .box{
+        height: 100%;
+        @extend %box-shadow;
+        &:hover {
+          @extend %box-hover;
+        }
+        padding: 10px;
+        background-color: color(white);
+        border-radius: $border-radius;
+        #map{
+          height: 100%;
+        }
+      }
+    }
+    .chart{
+      @include desktop{
+        height: 40%;
+      }
+      border: $solid;
+      padding: $padding;
+      .box{
+        @extend %box-shadow;
+        &:hover {
+          @extend %box-hover;
+        }
+        overflow: hidden;
+        padding: 10px;
+        background-color: color(white);
+        border-radius: $border-radius;
+        .row{
+          height: 100%;
+          .list-kecamatan{
+            position: relative;
+            overflow: scroll;
+            #listKecamatan{
+
+              .info-box{
+                display: block;
+                min-height: 60px;
+                background: #fff;
+                width: 100%;
+                border-radius: 2px;
+                margin-bottom: 10px;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                .info-box-icon{
+                  color: #fff;
+                  border-radius: 2px 0px 0px 2px;
+                  display: block;
+                  float: left;
+                  height: 60px;
+                  width: 60px;
+                  text-align: center;
+                  font-size: 25px;
+                  line-height: 60px;
+                  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                }
+                .info-box-content {
+                  padding: 5px 10px;
+                  margin-left: 60px;
+                  .info-box-text{
+                    display: block;
+                    font-size: 14px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                  .info-box-number{
+                    display: block;
+                    font-weight: bold;
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+
+      }
+    }
+  }
+  .right-side {
+    @include desktop{
+      height: 100%;
+    }
+    .aset {
+      @include desktop{
+        height: 100%;
+      }
+      border: $solid;
+      padding: $padding;
+
+      .box{
+        @extend %box-shadow;
+        &:hover {
+          @extend %box-hover;
+        }
+        padding: 10px;
+        padding-top: 0px;
+        background-color: color(white);
+        border-radius: $border-radius;
+        overflow: hidden;
+      }
+      padding: $padding;
+      .banner {
+        @extend %gradient-blue;
+        min-height: 150px;
+        color: color(white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h3 {
+          margin: 0;
+          font-weight: bold;
+          font-size: 24px;
+          text-transform: uppercase;
+        }
+        p{
+          margin: 0;
+        }
+        button {
+          margin-top: 10px;
+          background-color: color(white);
+          color: color(primary);
+          @extend %box-shadow;
+        }
+      }
+      .search {
+
+      }
+      .result{
+        height: 100%;
+        padding: $padding;
+
+        .list{
+          height: 100%;
+          padding: 30px;
+          padding-top: 10px;
+          width: 100%;
+          position: relative;
+          overflow: scroll;
+          h3 {
+            margin: 0px;
+          }
+          .row {
+            margin-bottom: 10px;
+            &:hover {
+              background: #eee;
+              cursor: pointer;
+            }
+
+            //box-shadow: none;
+
+            @extend %box-shadow;
+            //padding: 10px;
+            overflow: auto;
+            position: relative;
+            border-radius: $border-radius;
+            img {
+             float: left;
+             margin: 0 15px 0 0;
+             border-radius: $border-radius;
+             }
+             .thumbnail {
+               position: relative;
+               width: 100px;
+               height: 100px;
+               overflow: hidden;
+               border-radius: 5px 0 0 5px;
+               img {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  height: 100%;
+                  width: auto;
+                  -webkit-transform: translate(-50%,-50%);
+                      -ms-transform: translate(-50%,-50%);
+                          transform: translate(-50%,-50%);
+               }
+             }
+            .text {
+              padding-right: 0px !important;
+              p {
+                  margin: 0px;
+                  max-height: 50px;
+
+                  &.nama {
+                      font-size: 1em;
+                      font-weight: bold;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      max-width: 100%;
+                      max-height: 50px;
+                  }
+                  &.kecamatan {
+                    font-size: 0.8em;
+
+                  }
+                  &.jenis{
+                    position: absolute;
+                    bottom:5px;
+                    right: 15px;
+                    font-style: italic;
+                    font-size: 0.8em;
+                    color: color(mute);
+                  }
+              }
+            }
+
+          }
+          .thumbnail {
+
+          }
+        }
+      }
+      .map-data{
+        height: 100%;
+        z-index: 3;
+        display: none;
+        background-color: color(white);
+        padding: 15px;
+        .col {
+          height: 100%;
+          padding-left: 0;
+          padding-right: 0;
+          position: relative;
+          overflow: scroll;
+          padding-bottom: 200px;
+          img{
+            border-radius: $border-radius;
+            width: 100%;
+          }
+          h4{
+            margin-top: 10px;
+            margin-bottom: 0px;
+          }
+          #nama_kecamatan {
+            font-weight: bold;
+            color: color(pink);
+            margin-left: 0px !important;
+            font-size: 1em !important;
+            opacity: 1!important;
+          }
+          p{
+            display: block;
+            margin-left: 10px;
+            margin-right: 10px;
+            max-width: 80%;
+            font-weight: bold;
+            font-size: 0.9em;
+            opacity: 0.5;
+            span{
+              font-weight: normal;
+
+            }
+          }
+          .back-button {
+            margin-top: 30px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+
+            background-color: color(pink);
+            color: color(white);
+            border: none;
+            border-radius: 5px;
+          }
+
+        }
+
+      }
+      @include side-color('tanah');
+      @include side-color('gedung');
+      @include side-color('jalan');
+
+    }
+  }
+
+}

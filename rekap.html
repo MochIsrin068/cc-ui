@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kendari Command Center</title>
+
+  <!-- ANIMATE.CSS -->
+  <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- My STYLE -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
+
+  <!-- CHART JS FOR -->
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.js"></script>
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
+
+
+</head>
+
+<body>
+
+  <body id="rekapDashboard">
+    <div id="loader"></div>
+    <div id="bg" style="display:none"></div>
+    <div class="container-fluid animated fadeIn" id="myDiv" style="display:none">
+      <div class="row row-full">
+        <div class="col-md-5 col-xs-12 left-side">
+          <div class="row simsetgis animated slideInUp">
+            <div class="col box col-xs-12">
+              <div class="header">
+                <p>Simsetgis</p>
+              </div>
+              <div class="body" id="tilebox">
+                <div class="row">
+                  <div class="col-md-4 info">
+                    <div class="tile-box mybg-tanah">
+                      <div class="tile-content-wrapper color-tanah">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="tile-content">
+                          123
+                        </div>
+                      </div>
+                      <div class="tile-header">
+                        Aset Tanah
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 info">
+                    <div class="tile-box mybg-gedung ">
+                      <div class="tile-content-wrapper color-gedung">
+                        <i class="fa fa-building"></i>
+                        <div class="tile-content">
+                          42
+                        </div>
+                      </div>
+                      <div class="tile-header">
+                        Aset Gedung
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 info">
+                    <div class="tile-box mybg-jalan">
+                      <div class="tile-content-wrapper color-jalan">
+                        <i class="fa fa-road"></i>
+                        <div class="tile-content">
+                          21
+                        </div>
+                      </div>
+                      <div class="tile-header">
+                        Aset Jalan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row simpeg animated slideInUp delay-2">
+            <div class="col box col-xs-12 ">
+              <div class="header">
+                <p>Simpeg</p>
+              </div>
+              <div class="body" id="infoSimpeg">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-primary">18</span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">2019</span>
+                        <span class="info-box-number">Naik jabatan</span>
+                      </div><!-- /.info-box-content -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-danger">12</span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">2019</span>
+                        <span class="info-box-number" id="countBerita">Pensiun</span>
+                      </div><!-- /.info-box-content -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row sipengaduan animated slideInUp delay-3">
+            <div class="col box col-xs-12 main-content">
+              <div class="header">
+                Simpengaduan
+              </div>
+              <div class="body">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="21000">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="list">
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://d2y8nrrb8y42iz.cloudfront.net/uploads/radarbromo/news/2017/11/21/geram-jalan-rusak-warga-sumbergedang-tanam-pohon-di-lubang_m_28281.jpeg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Azis Yahya
+                            </p>
+                            <p class="title">Jalan rusak di lorong kancil andonouhu</p>
+                            <p class="waktu">
+                              Jumat, 26-1-2019 | 08:21 Wita
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="http://cdn2.tstatic.net/jabar/foto/bank/images/pohon-tumbang-di-cigadung.jpg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Anisa Rifki
+                            </p>
+                            <p class="title">Pohon tumbah di perumahan tumbu Mandonga</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://asset.kompas.com/data/photo/2014/02/11/173529620140211-160147780x390.JPG" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Eko Rahman
+                            </p>
+                            <p class="title">Sampah menumpuk di depan pasarbaru</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="list">
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="http://cdn2.tstatic.net/jabar/foto/bank/images/pohon-tumbang-di-cigadung.jpg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Anisa Rifki
+                            </p>
+                            <p class="title">Pohon tumbah di perumahan tumbu Mandonga</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://d2y8nrrb8y42iz.cloudfront.net/uploads/radarbromo/news/2017/11/21/geram-jalan-rusak-warga-sumbergedang-tanam-pohon-di-lubang_m_28281.jpeg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Azis Yahya
+                            </p>
+                            <p class="title">Jalan rusak di lorong kancil andonouhu</p>
+                            <p class="waktu">
+                              Jumat, 26-1-2019 | 08:21 Wita
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://asset.kompas.com/data/photo/2014/02/11/173529620140211-160147780x390.JPG" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Eko Rahman
+                            </p>
+                            <p class="title">Sampah menumpuk di depan pasarbaru</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="list">
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://asset.kompas.com/data/photo/2014/02/11/173529620140211-160147780x390.JPG" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Eko Rahman
+                            </p>
+                            <p class="title">Sampah menumpuk di depan pasarbaru</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="https://d2y8nrrb8y42iz.cloudfront.net/uploads/radarbromo/news/2017/11/21/geram-jalan-rusak-warga-sumbergedang-tanam-pohon-di-lubang_m_28281.jpeg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Azis Yahya
+                            </p>
+                            <p class="title">Jalan rusak di lorong kancil andonouhu</p>
+                            <p class="waktu">
+                              Jumat, 26-1-2019 | 08:21 Wita
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="thumbnail col-4">
+                            <img src="http://cdn2.tstatic.net/jabar/foto/bank/images/pohon-tumbang-di-cigadung.jpg" />
+                          </div>
+                          <div class="text col-8">
+                            <p class="source">
+                              Anisa Rifki
+                            </p>
+                            <p class="title">Pohon tumbah di perumahan tumbu Mandonga</h3>
+                              <p class="waktu">Jumat, 26-1-2019 | 08:21 Wita</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-xs-12 mid-side">
+          <div class="row sppd-1 animated flipInX">
+            <div class="col box col-xs-12">
+              <div class="header">SPPD</div>
+              <div class="body">
+                <div id="carSppd1" class="carousel slide" data-ride="carousel" data-interval="8000">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="content">
+                        <p class="dinas">Dinas Pekerjaan Umum</p>
+                        <p class="tujuan"><i class="fa fa-plane"></i> Jakarta</p>
+                        <p class="tanggal">26 Januari 2016<span class="dana">Rp.5,000,000</span></p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <p class="dinas">Dinas Pendidikan</p>
+                        <p class="tujuan"><i class="fa fa-plane"></i> Bandung</p>
+                        <p class="tanggal">26 Januari 2016<span class="dana">Rp.8,000,000</span></p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <p class="dinas">DPRD</p>
+                        <p class="tujuan"><i class="fa fa-plane"></i> Jakarta</p>
+                        <p class="tanggal">26 Januari 2016<span class="dana">Rp.9,000,000</span></p>
+                      </div>
+                    </div>
+
+                  </div>
+                  <a class="carousel-control-prev" href="#carSppd1" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carSppd1" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row sppd-2 animated flipInX delay-1">
+            <div class="col box col-xs-12">
+              <div class="header">SPPD Terbanyak Tahun Ini</div>
+              <div class="body">
+                <div id="carSppd2" class="carousel slide" data-ride="carousel" data-interval="12000">
+
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="content">
+                        <i class="fa fa-plane"></i>
+                        <p class="dinas">
+                          Dinas Pendidikan<br>
+                          <span class="jumlah">89</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-plane"></i>
+                        <p class="dinas">
+                          DPRD<br>
+                          <span class="jumlah">75</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-plane"></i>
+                        <p class="dinas">
+                          Dinas Pekerjaan Umum<br>
+                          <span class="jumlah">52</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carSppd2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carSppd2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row eoffice animated flipInX delay-2">
+            <div class="col box col-xs-12">
+              <div class="header">Eoffice Tujuan Walikota</div>
+              <div class="body">
+                <div id="eoffice" class="carousel slide" data-ride="carousel" data-interval="9000">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="content">
+                        <i class="fa fa-envelope"></i>
+                        <p class="dinas">Dinas Kesehatan</p>
+                        <p class="tanggal">26 Januari 2019</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-envelope"></i>
+                        <p class="dinas">Dinas Kehutanan</p>
+                        <p class="tanggal">26 Januari 2019</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-envelope"></i>
+                        <p class="dinas">Dinas Pertanian</p>
+                        <p class="tanggal">26 Januari 2019</p>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#eoffice" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#eoffice" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row simpel-arsip animated flipInX delay-2">
+            <div class="col box col-xs-12">
+              <div class="header">Simpel Arsip Hari ini</div>
+              <div class="body">
+                <div id="simpelArsip" class="carousel slide" data-ride="carousel" data-interval="12500">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="content">
+                        <i class="fa fa-file"></i>
+                        <p class="jenis">Jenis Pengajuan</p>
+                        <p class="dinas">Dinas Perhubungan</p>
+                        <p class="anggaran">Rp.192,000,000</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-file"></i>
+                        <p class="jenis">Jenis Pengajuan</p>
+                        <p class="dinas">Dinas Pendidikan</p>
+                        <p class="anggaran">Rp.182,000,000</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <i class="fa fa-file"></i>
+                        <p class="jenis">Jenis Pengajuan</p>
+                        <p class="dinas">Dinas Kesehatan</p>
+                        <p class="anggaran">Rp.162,000,000</p>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#simpelArsip" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#simpelArsip" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 right-side">
+          <div class="row sppd-graph">
+            <div class="col box col-xs-12">
+              <div class="header">
+                Grafik SPPD Berdasarkab Bulan
+              </div>
+              <div class="body">
+                <canvas id="bar-chart" width="800" height="520"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="row simplearsip">
+            <div class="col box col-xs-12">
+              <div class="header">
+                Simpel Arsip Penggunaan Anggaran Tahun Ini
+              </div>
+              <div class="body">
+                <div id="simpelArsipBar" class="carousel slide" data-ride="carousel" data-interval="10000">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="content">
+                        <canvas id="bar-chart2" width="800" height="600"></canvas>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <canvas id="bar-chart3" width="800" height="600"></canvas>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="content">
+                        <canvas id="bar-chart4" width="800" height="600"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#simpelArsipBar" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#simpelArsipBar" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  <script src="assets/js/utils.js" charset="utf-8"></script>
+  <script src="assets/js/moment.js" charset="utf-8"></script>
+  <script src="assets/js/Chart.min.js" charset="utf-8"></script>
+  <script src="assets/js/jquery-2.2.4.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/chart/bar.js"></script>
+  <script type="text/javascript">
+    window.onload = function () {
+      showPage();
+    };
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("myDiv").style.display = "block";
+      document.getElementById("bg").style.display = "block";
+    }
+  </script>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Trend</title>
+
+
+  <!-- ANIMATE.CSS -->
+  <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- My STYLE -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+  <!-- CHART JS FOR -->
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.js"></script>
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
+  <!-- Word Cloud2.js -->
+  <script src="assets/js/wordcloud2.js" charset="utf-8"></script>
+
+
+</head>
+
+<body id="socialTrend">
+  <div id="loader"></div>
+  <div id="bg" class="animated fadeIn faster" style="display:none"></div>
+  <div class="container-fluid animated fadeIn" id="myDiv" style="display:none">
+    <div class="row row-full">
+      <div class="col-md-8 col-xs-12 left-side">
+        <div class="row header">
+          <div class="col col-xs-12 header-content ">
+            <div class="row">
+              <div class="col-md-3 col-sm-12 title">
+                <h1>Sosial Trend </h1>
+                <p>Kota Kendari</p>
+                <button class="btn btn-primary">Panduan</button>
+              </div>
+              <div class="col-md-6 col-sm-12 chart">
+                <canvas id="trendChart" width="400" height="200"></canvas>
+              </div>
+              <div class="col-md-3 col-sm-12 info-box-wrapper">
+                <div class="info-box">
+                  <span class="info-box-icon bg-primary"><i class="fa fa-twitter"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Tweet</span>
+                    <span class="info-box-number" id="countTweet">41,410</span>
+                  </div><!-- /.info-box-content -->
+                </div>
+                <div class="info-box">
+                  <span class="info-box-icon bg-danger"><i class="fa fa-newspaper-o"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Berita</span>
+                    <span class="info-box-number" id="countBerita">41,410</span>
+                  </div><!-- /.info-box-content -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row main">
+          <div class="col-12 col-md-6 main-content">
+            <div class="main-left">
+              <div class="col">
+                <div class="row" id='search'>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-9">
+                        <input type="text" class="form-control" placeholder="cari kata atau #hastag">
+                      </div>
+                      <div class="col-3">
+                        <button class="btn btn-primary">Cari</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id="result">
+                  <div class="col" id="listTweet">
+                    <div class="" v-for="tweet in filteredList">
+                      <div v-html="tweet.tweet"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 main-content">
+            <div class="main-right">
+              <div class="row" id="wordCloud">
+                <div class="col col-sm-12">
+                  <p>Word Cloud</p>
+                  <div class="col-sm-12">
+                    <canvas id="word_cloud" class="word_cloud" width="400" height="100%"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="tweet">
+                <div class="col">
+                  <blockquote class="twitter-tweet">
+                    <p lang="in" dir="ltr">18/1 Pengawasan rutin di dermaga pelabuhan murhum km express bahari tujuan
+                      kendari <a href="https://twitter.com/hashtag/OneHealthKIPM?src=hash&amp;ref_src=twsrc%5Etfw">#OneHealthKIPM</a>
+                      <a href="https://twitter.com/HumasBKIPM?ref_src=twsrc%5Etfw">@HumasBKIPM</a> <a href="https://twitter.com/rinajanwar2201?ref_src=twsrc%5Etfw">@rinajanwar2201</a>
+                      <a href="https://twitter.com/arsal_azis?ref_src=twsrc%5Etfw">@arsal_azis</a> <a href="https://twitter.com/bambang11747656?ref_src=twsrc%5Etfw">@bambang11747656</a>
+                      <a href="https://twitter.com/alwanawank?ref_src=twsrc%5Etfw">@alwanawank</a> <a href="https://t.co/Py966790ug">pic.twitter.com/Py966790ug</a></p>&mdash;
+                    BKIPM Baubau SIAGA (@BKIPMBaubau) <a href="https://twitter.com/BKIPMBaubau/status/1086181462536118272?ref_src=twsrc%5Etfw">January
+                      18, 2019</a>
+                  </blockquote>
+                  <blockquote class="twitter-tweet">
+                    <p lang="in" dir="ltr">19.1 pengirim Ibu Daeni penerima pt Darma samudera.tuna loin 11koli
+                      350kg.tujuan kendari km Napoleon 777.<a href="https://twitter.com/HumasBKIPM?ref_src=twsrc%5Etfw">@HumasBKIPM</a>
+                      <a href="https://twitter.com/rinajanwar2201?ref_src=twsrc%5Etfw">@rinajanwar2201</a> <a href="https://twitter.com/arsal_azis?ref_src=twsrc%5Etfw">@arsal_azis</a>
+                      <a href="https://twitter.com/BKIPMBaubau?ref_src=twsrc%5Etfw">@BKIPMBaubau</a> <a href="https://t.co/XZhVSDRU6F">pic.twitter.com/XZhVSDRU6F</a></p>&mdash;
+                    BKIPM Wanci-Wakatobi (@WilkerWanci) <a href="https://twitter.com/WilkerWanci/status/1086475112956682240?ref_src=twsrc%5Etfw">January
+                      19, 2019</a>
+                  </blockquote>
+                  <blockquote class="twitter-tweet">
+                    <p lang="in" dir="ltr">19/1 Pemeriksaan Komoditi gurita 210 Kg tujuan kendari via KM Exy Priscillia
+                      Penerima Abdi <a href="https://twitter.com/hashtag/OneHealthKIPM?src=hash&amp;ref_src=twsrc%5Etfw">#OneHealthKIPM</a>
+                      <a href="https://twitter.com/HumasBKIPM?ref_src=twsrc%5Etfw">@HumasBKIPM</a> <a href="https://twitter.com/rinajanwar2201?ref_src=twsrc%5Etfw">@rinajanwar2201</a>
+                      <a href="https://twitter.com/arsal_azis?ref_src=twsrc%5Etfw">@arsal_azis</a> <a href="https://twitter.com/Alexand52110583?ref_src=twsrc%5Etfw">@Alexand52110583</a>
+                      <a href="https://t.co/S53eriNpTT">pic.twitter.com/S53eriNpTT</a></p>&mdash; BKIPM Baubau SIAGA
+                    (@BKIPMBaubau) <a href="https://twitter.com/BKIPMBaubau/status/1086523524318081025?ref_src=twsrc%5Etfw">January
+                      19, 2019</a>
+                  </blockquote>
+                  <blockquote class="twitter-tweet">
+                    <p lang="in" dir="ltr">19/1 Pemeriksaan Komoditi daging ikan tuna 210 kg tujuan kendari via KM
+                      Express Pengirim PT Dharma Samudera <a href="https://twitter.com/hashtag/OneHealthKIPM?src=hash&amp;ref_src=twsrc%5Etfw">#OneHealthKIPM</a>
+                      <a href="https://twitter.com/HumasBKIPM?ref_src=twsrc%5Etfw">@HumasBKIPM</a> <a href="https://twitter.com/rinajanwar2201?ref_src=twsrc%5Etfw">@rinajanwar2201</a>
+                      <a href="https://twitter.com/arsal_azis?ref_src=twsrc%5Etfw">@arsal_azis</a> <a href="https://twitter.com/Alexand52110583?ref_src=twsrc%5Etfw">@Alexand52110583</a>
+                      <a href="https://t.co/3Zg4m8iYar">pic.twitter.com/3Zg4m8iYar</a></p>&mdash; BKIPM Baubau SIAGA
+                    (@BKIPMBaubau) <a href="https://twitter.com/BKIPMBaubau/status/1086521610033451009?ref_src=twsrc%5Etfw">January
+                      19, 2019</a>
+                  </blockquote>
+                  <blockquote class="twitter-tweet">
+                    <p lang="in" dir="ltr">Tanaman Jagung Tetap Stabil di Musim Hujan <a href="https://t.co/2lADuPEGvi">https://t.co/2lADuPEGvi</a>
+                      <a href="https://t.co/qyNHQtG1qm">https://t.co/qyNHQtG1qm</a></p>&mdash; Kendari Pos Online
+                    (@Kendari_Pos) <a href="https://twitter.com/Kendari_Pos/status/1087231265579909123?ref_src=twsrc%5Etfw">January
+                      21, 2019</a>
+                  </blockquote>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-12 right-side">
+        <div class="row side-news">
+          <div class="col" id="hotnews">
+            <div class="time">
+              <h3>Hotnews</h3>
+              <p id="hariWaktu"></p>
+
+            </div>
+            <div class="list" id="listHotnews">
+              <div class="row" v-for="news in newss">
+                <div class="thumbnail col-4">
+                  <img v-bind:src="news.imgUrl" />
+                </div>
+                <div class="text col-8">
+                  <p class="source">
+                    {{news.media}}</p>
+                  <p class="title">{{news.judul}}</h3>
+                    <p class="waktu"> {{news.tanggal}}</p>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="button">
+
+
+            </div>
+
+            <p><span id="time"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/cloud.js"></script>
+  <script src="assets/js/utils.js" charset="utf-8"></script>
+  <script src="assets/js/moment.js" charset="utf-8"></script>
+  <script src="assets/js/Chart.min.js" charset="utf-8"></script>
+  <script src="assets/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="assets/js/social-data.js" charset="utf-8"></script>
+  <script src="assets/js/social.js" charset="utf-8"></script>
+
+</body>
+
+</html>

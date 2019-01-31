@@ -1,0 +1,240 @@
+// FONT
+@font-face {
+    font-family: 'Sarabun';
+    src: url('../font/Sarabun-Regular.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src:url('..font/Poppins.woff2') format('woff2');
+
+}
+
+$titillium: 'Titillium Web';
+$poppins: 'Poppins';
+$opensans: '\'Open Sans\', sans-serif';
+$sarabun: 'Sarabun';
+
+
+//scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  //background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+// lOADER
+
+#loader {
+  position: absolute;
+  left: 55%;
+  top: 55%;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+//keyframes
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+// COLOR
+$color: (
+  primary: #3494E6,
+  secondary: #00cec9,
+  pink: #EC6EAD,
+  white: #fff,
+  dark: #dfe6e9,
+  mute: #bfbfbf,
+  tanah: #F1648D,
+  gedung: #F6D700,
+  jalan: #62A2EE,
+  bgbody : #cfe7ff,
+  titlebg: #17a2b8a6,
+  success: green,
+  title: #fff,
+
+);
+
+// FUNCTION
+
+@function color($color-name){
+  @return map-get($color, $color-name);
+}
+
+
+@function title($item) {
+    @return map-get($title, $item);
+}
+
+@mixin desktop {
+  @media(min-width: #{$desktop}){
+    @content;
+  }
+}
+@mixin mobile {
+  @media(max-width: #{$desktop}){
+    @content;
+  }
+}
+
+
+//MIXIN
+
+@mixin shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+@mixin gradient($col1, $col2){
+  background: $col1;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, $col1, $col2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, $col1, $col2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+@mixin side-color($val){
+  .aset-#{$val} {
+    border-radius: 0 5px 5px 0;
+    background-color: color($val);
+    right: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+  }
+}
+@mixin bg-color($val){
+  .mybg-#{$val} {
+    background-color: color($val) !important;
+  }
+}
+
+// VARIABLE
+$desktop : 840px;
+$border-radius: 5px;
+$padding: 10px;
+$solid: solid 0px;
+$widthimg: 100%;
+$heightimg: 70px;
+$heightimg2: 100px;
+$title:(pd: 7px,
+brdrds: 5px);
+
+%box-shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+%box-hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+%gradient-blue{
+  background: #3494E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+//GLOBAL STYLE
+
+body, html {
+  height: 100%;
+  font-family: $sarabun;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-family: $titillium;
+      font-weight: bold;
+  }
+}
+body {
+  ul {
+      list-style: none;
+      padding: 0;
+  }
+}
+
+.color-tanah {
+  color: color(tanah);
+}
+.color-gedung {
+  color: color(gedung);
+}
+.color-jalan {
+  color: color(jalan);
+}
+@include bg-color('tanah');
+@include bg-color('gedung');
+@include bg-color('jalan');
+
+.primary {
+  background-color: color(primary);
+  color: color(white);
+}
+
+.container-fluid{
+  padding: 30px;
+  //background-color: map-get($color, dark);
+  @include desktop{
+    height: 100%;
+  }
+}
+.row-full {
+  @include desktop{
+    height: 100%;
+  }
+}
+.box{
+  height: 100%;
+  @extend %box-shadow;
+  &:hover {
+    @extend %box-hover;
+  }
+  padding: 10px;
+  background-color: color(white);
+  border-radius: $border-radius;
+  #map{
+    height: 100%;
+  }
+}
+
+
+
+@import 'socialTrend';
+@import 'mapAset';
+@import 'bxsz';
+@import 'cctvPage';
+@import 'rekap';

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map Aset</title>
+
+    <!-- ANIMATE.CSS -->
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- My STYLE -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
+
+    <!-- CHART JS FOR -->
+    <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.js"></script>
+    <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+     crossorigin="anonymous">
+
+  </head>
+  <body id="mapAset" >
+    <div id="loader"></div>
+    <div id="bg" style="display:none"></div>
+    <div class="container-fluid animated fadeIn" id="myDiv" style="display:none">
+      <div class="row row-full">
+        <div class="col-md-8 col-xs-12 order-md-1 order-2 left-side">
+          <div class="row map">
+            <div class="col box col-xs-12 map-content ">
+              <div id="map">
+
+              </div>
+            </div>
+          </div>
+          <div class="row chart">
+            <div class="col box col-xs-12 main-content">
+              <div class="row">
+                <div class="col-md-7 col-xs-12 list-kecamatan" >
+                  <div class="row" id="listKecamatan">
+                    <div class="col" v-for="kecamatan in kecamatans">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-primary">{{kecamatan.jumlah_aset}}</span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Kecamatan</span>
+                          <span class="info-box-number">{{kecamatan.nama_kecamtan}}</span>
+                        </div><!-- /.info-box-content -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                  <canvas id="canvasDoughnut"  width="400" height="220">
+
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 order-md-2 order-1 right-side">
+          <div class="row aset">
+            <div class="col box" id="listData">
+              <div class="row banner">
+                <div class="col">
+                  <h3>Peta Aset</h3>
+                  <p>Kota Kendari</p>
+                  <button class="btn btn-primary" type="button" name="button">Panduan</button>
+                </div>
+              </div>
+              <div class="row mt-3 search">
+                <div class="col-12">
+                  <input type="text" class="form-control" v-model="search" placeholder="Mulai mengetik untuk mencari aset" onclick="showList()">
+                </div>
+              </div>
+              <div class="row map-data animated slideInLeft" id="showData" >
+                <div class="col">
+                  <img  id="foto" src="https://dummyimage.com/300x200/e6e6e6/666.png" />
+                  <h4 id="nama_grup">Nama Aset</h4>
+                  <p  id="nama_kecamatan">Kecamatan</p>
+                  <p>Jenis Aset : <span id="jenis_barang"></span></p>
+                  <p>Keterangan : <span id="keterangan"></span></p>
+                  <p>Kode Aset : <span id="no_kode_barang"></span></p>
+                  <p>Kondisi : <span id="kondisi_bangunan"></span></p>
+                  <p>Asal : <span id="asal_usul"></span></p>
+                  <p>Kordinat : <span id="kordinat"></span></p>
+                  <p>Alamat : <span id="letak"></span></p>
+                  <p>Status Tanah : <span id="status_tanah"></span></p>
+                  <button type="button" name="button" class="btn back-button" onclick="showList()">Kembali</button>
+                </div>
+
+              </div>
+              <div class="row result animated slideInRight" id="result">
+                <div class="list" id="listData">
+                    <div class="row" v-for="(aset, index) in filteredList"  >
+                    <div class="thumbnail col-4" v-bind:id='index' onclick="showData(this.id)">
+                      <span style="display:none" id="index">{{index}}</span>
+                      <div v-if="aset.foto !== null">
+                        <img v-bind:src="'http://simsetgis.kendarikota.go.id/upload/kib_gedung/foto/'+ aset.foto[0]" alt="">
+                      </div>
+                      <div v-if="aset.foto === null">
+                        <img src="https://dummyimage.com/300x200/e6e6e6/666.png" />
+                      </div>
+
+                    </div>
+                    <div class="text col-8" v-bind:id='index' onclick="showData(this.id)">
+                      <div class="">
+                        <p class="nama">{{aset.nama_grup}}</h3>
+                        <p class="kecamatan">{{aset.nama_kecamatan}}</p>
+                        <p class="jenis"> Aset Gedung</p>
+                      </div>
+                      <div class="aset-gedung"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script src="assets/js/utils.js" charset="utf-8"></script>
+  <script src="assets/js/moment.js" charset="utf-8"></script>
+  <script src="assets/js/Chart.min.js" charset="utf-8"></script>
+  <script src="assets/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/map-data.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="assets/js/map.js" charset="utf-8"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8aB4MpC1orBp300KQQAiVEnWdpry4OPg&callback=initMap" async defer></script>
+  </body>
+</html>
